@@ -12,7 +12,9 @@ export default function Search() {
   const [listGraph] = useState([]);
   const [searchTermValue, setsearchTermValue] = useState("")
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=`;
+  const url = process.env.REACT_APP_URL;
+  const APIKEY = process.env.REACT_APP_API_KEY;
+  console.log(url)
 
   const onChange = (event) => {
     setValue(event.target.value);
@@ -25,7 +27,7 @@ export default function Search() {
     try {
 
       axios
-        .get(url + searchTerm + `&appid=957fd4528329f9863b439949994970ee`)
+        .get(url + searchTerm + APIKEY)
         .then((response) => {
           const data = [];
           data.push(response.data["main"].temp);
